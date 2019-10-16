@@ -29,7 +29,7 @@ exportObject.getFotografias = function(){
 }
 
 exportObject.setFotografias = function ( newFotografias, handler) {
-  var newData = Object.assign({},data, {condominios: newFotografias});
+  var newData = Object.assign({},data, {fotografias: newFotografias});
   exportObject.setData(newData, function(err, sucess){
     if(err){
       handler(err, false);
