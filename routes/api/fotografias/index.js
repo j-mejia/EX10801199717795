@@ -19,53 +19,58 @@ router.get('/all', function(req, res){
 
 
 
+
 router.post('/new', function(req, res){
-    fotCollection = fileModel.getFotografias();
-    var newFo = Object.assign(
-       {},
-       req.body,
-       {
-           "title": req.body.title,
-           "url": req.body.url,
-           "thumbnailUrl": req.body.thumbnailUrl,
-           "album": req.body.album
-       }
-    );
-    var foExists = fotCollection.find(
-      function(o, i){
-        return o.id === newFo.id;
-      }
-    )
-    if( ! foExists ){
-      fotCollection.push(newFo);
-      fileModel.setFotografias(
-         fotCollection,
-         function(err, savedSuccesfully){
-           if(err){
-             res.status(400).json({ "error": "No se pudo ingresar objeto" });
-           } else {
-             res.json(newFo);  
-           }
-         }
-       );
-    } else {
-      res.status(400).json({"error":"No se pudo ingresar objeto"});
+  fotCollection = fileModel.getFotografias();
+  var newCo = Object.assign(
+     {},
+     req.body,
+     {
+         "title": req.body.title,
+         "url": req.body.url,
+         "thumbnailUrl": req.body.thumbnailUrl,
+         "album": req.body.album
+
+     }
+  );
+  var coExists = fotCollection.find(
+    function(o, i){
+      return o.codigo === newCo.codigo;
     }
-  }); // post /new
-  
-  router.put('/update/:fotId',
+  )
+  if( ! coExists ){
+    fotCollection.push(newCo);
+    fileModel.setFotografias(
+       fotCollection,
+       function(err, savedSuccesfully){
+         if(err){
+           res.status(400).json({ "error": "No se pudo ingresar objeto" });
+         } else {
+           res.json(newCo);  // req.body ===  $_POST[]
+         }
+       }
+     );
+  } else {
+    res.status(400).json({"error":"No se pudo ingresar objeto"});
+  }
+}); // post /new
+
+
+router.put('/update/:fotCodigo',
   function(req, res){
       fotCollection = fileModel.getFotografias();
-      var fotIdToModify = req.params.fotId;
+      var fotCodigoToModify = req.params.fotCodigo;
       var amountToAdjust = parseInt(req.body.ajustar);
       var adjustType = req.body.tipo || 'SUB';
+      var adjustType2 = req.body.tipo1 || 'SUB';
       var adjustHow = (adjustType == 'ADD' ? 1 : -1);
+      var adjustHow = (adjustType2 == 'ADD' ? 1 : -1);
       var modFotografias = {};
       var newFotografiasArray = fotCollection.map(
         function(o,i){
-          if( fotIdToModify === o.id){
+          if( fotCodigoToModify === o.codigo){
              o.url = adjustType;
-             o.thumbnailUrl = adjustType;
+             o.thumbnailUrl = adjustType2;
              modFotografias = Object.assign({}, o);
           }
           return o;
@@ -87,28 +92,28 @@ router.post('/new', function(req, res){
 
 
 router.delete(
-    '/delete/:fotId',
-    function( req, res) {
-      fotCollection = fileModel.getFotografias();
-      var fotIdToDelete  = req.params.fotId;
-      var newFotCollection = fotCollection.filter(
-        function(o, i){
-          return fotIdToDelete !== o.id;
+  '/delete/:fotCodigo',
+  function( req, res) {
+    fotCollection = fileModel.getFotografias();
+    var fotCodigoToDelete  = req.params.fotCodigo;
+    var newFotCollection = fotCollection.filter(
+      function(o, i){
+        return fotCodigoToDelete !== o.codigo;
+      }
+    ); //filter
+    fotCollection = newFotCollection;
+    fileModel.setFotografias(
+      fotCollection,
+      function (err, savedSuccesfully) {
+        if (err) {
+          res.status(400).json({ "error": "No se pudo eliminar objeto" });
+        } else {
+          res.json({"newProdsQty": fotCollection.length});
         }
-      ); //filter
-      fotCollection = newFotCollection;
-      fileModel.setFotografias(
-        fotCollection,
-        function (err, savedSuccesfully) {
-          if (err) {
-            res.status(400).json({ "error": "No se pudo eliminar objeto" });
-          } else {
-            res.json({"newProdsQty": fotCollection.length});
-          }
-        }
-      );
-    }
-  );// delete
-  
+      }
+    );
+  }
+);// delete
+
 
 module.exports = router;

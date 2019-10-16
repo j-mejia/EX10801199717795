@@ -1,0 +1,176 @@
+{
+	"id": "05f1fef0-e602-4a25-8ae1-bad6415cbe32",
+	"name": "fotografias",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"497ce487-999b-4a03-bbe8-ef90936998a2",
+		"1aa4a7a0-3404-4492-9f0a-1eb46f6726f1",
+		"a9c57631-367e-46e8-b967-a2935192d3d0",
+		"ebdfdb8c-5482-4e6a-8c8b-6cc2b16e0cd9"
+	],
+	"folders_order": [],
+	"protocolProfileBehavior": {},
+	"folders": [],
+	"requests": [
+		{
+			"id": "1aa4a7a0-3404-4492-9f0a-1eb46f6726f1",
+			"name": "put",
+			"url": "http://localhost:3000/api/fot/update/1",
+			"description": "",
+			"data": [
+				{
+					"key": "ajustar",
+					"value": "ADD",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tipo",
+					"value": "https://unsplash.com/",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tipo1",
+					"value": "https://unsplash.com/photos/MMRa8GJIQhI",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataOptions": null,
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "497ce487-999b-4a03-bbe8-ef90936998a2",
+			"name": "post",
+			"url": "http://localhost:3000/api/fot/new",
+			"description": "",
+			"data": [
+				{
+					"key": "codigo",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "title",
+					"value": "Vintage camara",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "url",
+					"value": "https://unsplash.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "thumbnailUrl",
+					"value": "https://unsplash.com/photos/zSeOZKJZE6M",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "album",
+					"value": "photos",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataOptions": null,
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "a9c57631-367e-46e8-b967-a2935192d3d0",
+			"name": "get",
+			"url": "http://localhost:3000/api/fot/all",
+			"description": "",
+			"data": [],
+			"dataOptions": null,
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"type": "text"
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "ebdfdb8c-5482-4e6a-8c8b-6cc2b16e0cd9",
+			"name": "delete",
+			"url": "http://localhost:3000/api/fot/delete/1",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
